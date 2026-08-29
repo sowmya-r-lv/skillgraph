@@ -14,6 +14,11 @@ app.get('/api/health', async (req, res, next) => {
   try { await verifyConnection(); res.json({ status: 'ok' }); }
   catch (error) { error.statusCode = 503; next(error); }
 });
+
+app.get('/api/test', (req, res) => {
+  res.json({ message: 'Backend routes are working' });
+});
+
 app.use('/api/developers', developerRoutes);
 app.use('/api/projects', projectRoutes);
 app.get('/api/skills', async (req, res, next) => { try { res.json({ data: await getSkills() }); } catch (error) { next(error); } });
