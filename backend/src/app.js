@@ -8,7 +8,9 @@ import { verifyConnection } from './db/connection.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'https://skillgraph-frontend-7ups.onrender.com'
+}));
 app.use(express.json());
 app.get('/api/health', async (req, res, next) => {
   try { await verifyConnection(); res.json({ status: 'ok' }); }
